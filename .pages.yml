@@ -1,0 +1,65 @@
+media:
+  - name: productos
+    label: Fotos de productos
+    input: media/productos
+    output: /media/productos
+    extensions: [jpg, jpeg, png, webp]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: productos
+    label: Productos
+    type: file
+    path: data/productos.json
+    format: json
+    list: true
+    fields:
+      - name: nombre
+        label: Nombre del producto
+        type: string
+        required: true
+
+      - name: foto
+        label: Foto del producto
+        type: image
+        options:
+          media: productos
+          path: media/productos
+
+      - name: precio
+        label: Precio
+        type: number
+        required: true
+
+      - name: precioAnterior
+        label: Precio anterior
+        type: number
+
+      - name: categoria
+        label: Categoría
+        type: select
+        options:
+          values:
+            - Damas
+            - Caballeros
+            - Calzado
+            - Accesorios
+            - Ofertas
+
+      - name: tallas
+        label: Tallas
+        type: string
+
+      - name: colores
+        label: Colores
+        type: string
+
+      - name: descripcion
+        label: Descripción
+        type: text
+
+      - name: disponible
+        label: Disponible
+        type: boolean
+        default: true
