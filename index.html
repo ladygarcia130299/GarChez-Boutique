@@ -1,1039 +1,274 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>GarChéz Boutique</title>
-  <meta name="description" content="GarChéz Boutique - Moda, ropa y zapatos en Nicaragua.">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f8f7f5;
-      color: #222;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button {
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    .topbar {
-      background: #171717;
-      color: white;
-      text-align: center;
-      padding: 9px;
-      font-size: 13px;
-    }
-
-    header {
-      background: white;
-      border-bottom: 1px solid #e8e8e8;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-main {
-      max-width: 1250px;
-      margin: auto;
-      padding: 20px 25px;
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-
-    .logo {
-      font-size: 27px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      font-weight: 400;
-    }
-
-    .search {
-      flex: 1;
-      display: flex;
-      background: #f2f2f2;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid #ddd;
-    }
-
-    .search input {
-      flex: 1;
-      border: 0;
-      outline: none;
-      background: transparent;
-      padding: 14px 18px;
-      font-size: 14px;
-    }
-
-    .search button {
-      border: 0;
-      background: #171717;
-      color: white;
-      padding: 0 22px;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 18px;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    nav {
-      border-top: 1px solid #eee;
-      background: white;
-    }
-
-    .nav-inner {
-      max-width: 1250px;
-      margin: auto;
-      padding: 13px 25px;
-      display: flex;
-      gap: 30px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .nav-inner a:hover {
-      color: #a67c52;
-    }
-
-    .hero {
-      min-height: 500px;
-      background:
-        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
-        url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85")
-        center/cover;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-content {
-      max-width: 1250px;
-      width: 100%;
-      margin: auto;
-      padding: 60px 25px;
-      color: white;
-    }
-
-    .hero-content small {
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      font-size: 13px;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(45px, 7vw, 82px);
-      line-height: .95;
-      max-width: 700px;
-      margin: 20px 0;
-    }
-
-    .hero-content p {
-      font-size: 18px;
-      max-width: 500px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      border: 0;
-      background: white;
-      color: #171717;
-      padding: 15px 28px;
-      font-weight: 700;
-      border-radius: 3px;
-      transition: .2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .benefits {
-      background: white;
-      border-bottom: 1px solid #eee;
-    }
-
-    .benefits-inner {
-      max-width: 1250px;
-      margin: auto;
-      padding: 25px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .benefit {
-      text-align: center;
-      padding: 10px;
-    }
-
-    .benefit strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .benefit span {
-      color: #777;
-      font-size: 13px;
-    }
-
-    .section {
-      max-width: 1250px;
-      margin: auto;
-      padding: 70px 25px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title small {
-      color: #a67c52;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
-
-    .section-title h2 {
-      font-size: 38px;
-      margin-top: 10px;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .category {
-      height: 330px;
-      position: relative;
-      overflow: hidden;
-      color: white;
-      background: #ddd;
-    }
-
-    .category img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: .4s;
-    }
-
-    .category:hover img {
-      transform: scale(1.05);
-    }
-
-    .category-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(transparent 40%, rgba(0,0,0,.75));
-      display: flex;
-      align-items: flex-end;
-      padding: 25px;
-    }
-
-    .category h3 {
-      font-size: 25px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
-
-    .product {
-      background: white;
-      border: 1px solid #eee;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-image {
-      height: 350px;
-      overflow: hidden;
-      background: #eee;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: .4s;
-    }
-
-    .product:hover img {
-      transform: scale(1.04);
-    }
-
-    .product-info {
-      padding: 18px;
-    }
-
-    .product-category {
-      color: #999;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .product h3 {
-      font-size: 16px;
-      margin: 8px 0;
-    }
-
-    .price {
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .old-price {
-      color: #999;
-      text-decoration: line-through;
-      font-size: 13px;
-      margin-left: 7px;
-    }
-
-    .buy-btn {
-      width: 100%;
-      border: 0;
-      background: #171717;
-      color: white;
-      padding: 13px;
-      margin-top: 15px;
-      font-weight: 700;
-    }
-
-    .buy-btn:hover {
-      background: #a67c52;
-    }
-
-    .promo {
-      background: #e9e2da;
-      padding: 65px 25px;
-      text-align: center;
-    }
-
-    .promo h2 {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    .promo p {
-      max-width: 600px;
-      margin: auto auto 25px;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    .promo .btn {
-      background: #171717;
-      color: white;
-    }
-
-    .shipping {
-      background: white;
-    }
-
-    .shipping-box {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .shipping-box h2 {
-      font-size: 35px;
-      margin-bottom: 15px;
-    }
-
-    .shipping-box p {
-      color: #666;
-      line-height: 1.7;
-    }
-
-    .shipping-highlight {
-      margin-top: 25px;
-      padding: 20px;
-      background: #f5f1ec;
-      font-weight: 700;
-    }
-
-    .about {
-      background: #f8f7f5;
-      text-align: center;
-    }
-
-    .about-box {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .about-box h2 {
-      font-size: 35px;
-      margin-bottom: 18px;
-    }
-
-    .about-box p {
-      color: #666;
-      line-height: 1.8;
-    }
-
-    footer {
-      background: #171717;
-      color: white;
-      padding: 55px 25px 25px;
-    }
-
-    .footer-inner {
-      max-width: 1250px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .footer-brand h2 {
-      margin-bottom: 15px;
-    }
-
-    .footer-brand p,
-    footer li {
-      color: #aaa;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    footer h3 {
-      margin-bottom: 15px;
-      font-size: 15px;
-    }
-
-    footer ul {
-      list-style: none;
-    }
-
-    .copyright {
-      max-width: 1250px;
-      margin: 40px auto 0;
-      padding-top: 20px;
-      border-top: 1px solid #333;
-      color: #777;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: #25D366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 27px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.25);
-      z-index: 2000;
-    }
-
-    @media (max-width: 900px) {
-      .header-main {
-        flex-wrap: wrap;
-      }
-
-      .search {
-        order: 3;
-        flex-basis: 100%;
-      }
-
-      .benefits-inner,
-      .categories,
-      .products {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .footer-inner {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .header-main {
-        padding: 15px;
-      }
-
-      .logo {
-        font-size: 21px;
-      }
-
-      .header-actions {
-        font-size: 12px;
-      }
-
-      .nav-inner {
-        overflow-x: auto;
-        gap: 20px;
-      }
-
-      .hero {
-        min-height: 440px;
-      }
-
-      .benefits-inner,
-      .categories,
-      .products,
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .product-image {
-        height: 420px;
-      }
-
-      .category {
-        height: 380px;
-      }
-
-      .section-title h2 {
-        font-size: 30px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GarChéz Boutique</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#faf9f7;color:#222}
+header{background:#111;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font-size:28px;font-weight:bold}
+.logo span{color:#d4a574}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none}
+.hero{padding:70px 5%;text-align:center;background:linear-gradient(135deg,#f5e9dc,#fff)}
+.hero h1{font-size:48px;margin-bottom:15px}
+.hero p{font-size:19px;color:#555}
+.search{padding:25px 5%;text-align:center}
+.search input{width:min(600px,90%);padding:15px;border:1px solid #ddd;border-radius:30px;font-size:16px}
+.categories{display:flex;gap:10px;overflow-x:auto;padding:10px 5% 25px}
+.categories button{white-space:nowrap;border:1px solid #ddd;background:white;padding:12px 18px;border-radius:25px;cursor:pointer}
+.categories button:hover{background:#111;color:white}
+.section{padding:35px 5%}
+.section h2{text-align:center;margin-bottom:25px;font-size:30px}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px}
+.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 3px 15px rgba(0,0,0,.08);transition:.2s}
+.card:hover{transform:translateY(-4px)}
+.card img{width:100%;height:260px;object-fit:cover}
+.info{padding:16px}
+.info h3{margin-bottom:8px}
+.old{text-decoration:line-through;color:#999;margin-right:8px}
+.price{font-size:21px;font-weight:bold}
+.meta{font-size:13px;color:#777;margin:8px 0}
+.buy{display:block;text-align:center;background:#111;color:white;text-decoration:none;padding:12px;border-radius:8px;margin-top:12px}
+.empty{text-align:center;color:#777;padding:40px}
+.about,.shipping{padding:45px 7%;text-align:center;background:#f3eee8;margin-top:30px}
+.about p,.shipping p{max-width:800px;margin:10px auto;line-height:1.7}
+footer{background:#111;color:white;text-align:center;padding:30px 5%;margin-top:40px}
+footer a{color:white}
+@media(max-width:600px){
+.hero h1{font-size:35px}
+.logo{font-size:23px}
+.card img{height:230px}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="topbar">
-    🇳🇮 Envíos a toda Nicaragua · Compra fácil y atención personalizada por WhatsApp
+<header>
+  <div class="logo">GarChéz Boutique</div>
+  <nav>
+    <a href="#productos">Productos</a>
+    <a href="#envios">Envíos</a>
+    <a href="#nosotros">Nosotros</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>GarChéz Boutique</h1>
+  <p>Moda, accesorios y estilo para ti.</p>
+  <p>Compra fácil y directamente por WhatsApp.</p>
+</section>
+
+<section class="search">
+  <input type="text" id="search" placeholder="🔎 Buscar productos...">
+</section>
+
+<div class="categories">
+  <button onclick="filterProducts('Todos')">Todos</button>
+  <button onclick="filterProducts('Damas')">👗 Damas</button>
+  <button onclick="filterProducts('Caballeros')">👔 Caballeros</button>
+  <button onclick="filterProducts('Calzado')">👟 Calzado</button>
+  <button onclick="filterProducts('Bolsos')">👜 Bolsos</button>
+  <button onclick="filterProducts('Gorras y Sombreros')">🧢 Gorras y Sombreros</button>
+  <button onclick="filterProducts('Relojes')">⌚ Relojes</button>
+  <button onclick="filterProducts('Accesorios')">💎 Accesorios</button>
+  <button onclick="filterProducts('Temporada')">🌴 Temporada</button>
+  <button onclick="filterProducts('Ofertas')">🔥 Ofertas</button>
+</div>
+
+<section class="section" id="productos">
+  <h2>Nuestros productos</h2>
+  <div id="products" class="products">
+    <div class="empty">Cargando productos...</div>
   </div>
+</section>
 
-  <header>
+<section class="shipping" id="envios">
+  <h2>🚚 Envíos</h2>
+  <p>Realizamos envíos mediante CargoTrans.</p>
+  <p><strong>Envío gratis en el centro de Chinandega y El Viejo.</strong></p>
+  <p>Para otras zonas, consulta el costo de envío al momento de comprar.</p>
+</section>
 
-    <div class="header-main">
+<section class="about" id="nosotros">
+  <h2>Sobre GarChéz Boutique</h2>
+  <p>
+    GarChéz Boutique es una tienda creada por
+    <strong>Kevin Garcia y Keyling Sanchez</strong>,
+    donde encontrarás moda, calzado, bolsos, relojes,
+    accesorios y artículos de temporada.
+  </p>
+  <p>Estamos en Nicaragua y atendemos tus pedidos por WhatsApp.</p>
+</section>
 
-      <a href="#" class="logo">
-        GarChéz <span>Boutique</span>
-      </a>
+<footer>
+  <p><strong>GarChéz Boutique</strong></p>
+  <p>Kevin Garcia & Keyling Sanchez</p>
+  <p>📱 WhatsApp: <a href="https://wa.me/50587961399">87961399</a></p>
+  <p>© 2026 GarChéz Boutique</p>
+</footer>
 
-      <div class="search">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="¿Qué estás buscando?"
-          onkeyup="searchProducts()"
+<script>
+
+const WHATSAPP = "50587961399";
+
+let allProducts = [];
+let currentCategory = "Todos";
+
+async function loadProducts(){
+
+  const container = document.getElementById("products");
+
+  try{
+
+    const response = await fetch("data/productos.json");
+
+    if(!response.ok){
+      throw new Error("No se encontró productos.json");
+    }
+
+    const data = await response.json();
+
+    allProducts = Array.isArray(data) ? data : [];
+
+    renderProducts();
+
+  }catch(error){
+
+    container.innerHTML = `
+      <div class="empty">
+        <h3>Próximamente 🛍️</h3>
+        <p>Aún no hay productos publicados.</p>
+      </div>
+    `;
+
+  }
+
+}
+
+function renderProducts(){
+
+  const container = document.getElementById("products");
+  const search = document.getElementById("search").value.toLowerCase();
+
+  let products = allProducts.filter(product => {
+
+    const name = (product.nombre || "").toLowerCase();
+    const category = product.categoria || "";
+
+    const matchesSearch = name.includes(search);
+
+    const matchesCategory =
+      currentCategory === "Todos" ||
+      category === currentCategory;
+
+    return matchesSearch && matchesCategory;
+
+  });
+
+  if(products.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        <h3>No encontramos productos</h3>
+        <p>Prueba con otra búsqueda o categoría.</p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML = products.map(product => {
+
+    const image = product.foto || "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80";
+
+    const price = product.precio
+      ? `C$ ${Number(product.precio).toLocaleString("es-NI")}`
+      : "";
+
+    const oldPrice = product.precioAnterior
+      ? `<span class="old">C$ ${Number(product.precioAnterior).toLocaleString("es-NI")}</span>`
+      : "";
+
+    const message = encodeURIComponent(
+      `Hola GarChéz Boutique 👋, estoy interesado/a en este producto:\n\n${product.nombre}\nPrecio: ${price}\n\n¿Está disponible?`
+    );
+
+    return `
+
+      <article class="card">
+
+        <img
+          src="${image}"
+          alt="${product.nombre || "Producto"}"
+          loading="lazy"
         >
-        <button onclick="searchProducts()">🔍</button>
-      </div>
 
-      <div class="header-actions">
-        <span>♡ Favoritos</span>
-        <span>🛍 Carrito</span>
-      </div>
+        <div class="info">
 
-    </div>
+          <h3>${product.nombre || "Producto"}</h3>
 
-    <nav>
-      <div class="nav-inner">
-        <a href="#inicio">Inicio</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#ropa">Ropa</a>
-        <a href="#zapatos">Zapatos</a>
-        <a href="#ofertas">Ofertas</a>
-        <a href="#envios">Envíos</a>
-      </div>
-    </nav>
+          <div>
+            ${oldPrice}
+            <span class="price">${price}</span>
+          </div>
 
-  </header>
+          ${product.categoria
+            ? `<div class="meta">Categoría: ${product.categoria}</div>`
+            : ""
+          }
 
-  <main>
+          ${product.tallas
+            ? `<div class="meta">Tallas: ${product.tallas}</div>`
+            : ""
+          }
 
-    <section class="hero" id="inicio">
+          ${product.colores
+            ? `<div class="meta">Colores: ${product.colores}</div>`
+            : ""
+          }
 
-      <div class="hero-content">
+          ${product.descripcion
+            ? `<p class="meta">${product.descripcion}</p>`
+            : ""
+          }
 
-        <small>GarChéz Boutique · Nicaragua</small>
-
-        <h1>
-          Estilo que habla por ti.
-        </h1>
-
-        <p>
-          Descubre prendas y zapatos seleccionados para quienes quieren
-          vestir con personalidad, elegancia y confianza.
-        </p>
-
-        <a href="#productos" class="btn">
-          Comprar ahora
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <section class="benefits">
-
-      <div class="benefits-inner">
-
-        <div class="benefit">
-          <strong>🇳🇮 Envíos nacionales</strong>
-          <span>Enviamos a diferentes zonas de Nicaragua.</span>
-        </div>
-
-        <div class="benefit">
-          <strong>📦 CargoTrans</strong>
-          <span>Envíos seguros mediante CargoTrans.</span>
-        </div>
-
-        <div class="benefit">
-          <strong>💬 Compra por WhatsApp</strong>
-          <span>Atención personalizada para realizar tu pedido.</span>
-        </div>
-
-        <div class="benefit">
-          <strong>✨ Selección especial</strong>
-          <span>Moda pensada para ti.</span>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <section class="section" id="categorias">
-
-      <div class="section-title">
-        <small>Explora</small>
-        <h2>Compra por categoría</h2>
-      </div>
-
-      <div class="categories">
-
-        <a href="#productos" class="category">
-          <img
-            src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80"
-            alt="Ropa"
+          <a
+            class="buy"
+            href="https://wa.me/${WHATSAPP}?text=${message}"
+            target="_blank"
           >
+            Comprar por WhatsApp
+          </a>
 
-          <div class="category-overlay">
-            <h3>Ropa</h3>
-          </div>
-        </a>
-
-
-        <a href="#productos" class="category">
-
-          <img
-            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
-            alt="Moda femenina"
-          >
-
-          <div class="category-overlay">
-            <h3>Mujer</h3>
-          </div>
-
-        </a>
-
-
-        <a href="#productos" class="category">
-
-          <img
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
-            alt="Moda"
-          >
-
-          <div class="category-overlay">
-            <h3>Estilo</h3>
-          </div>
-
-        </a>
-
-
-        <a href="#productos" class="category">
-
-          <img
-            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
-            alt="Zapatos"
-          >
-
-          <div class="category-overlay">
-            <h3>Zapatos</h3>
-          </div>
-
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <section class="section" id="productos">
-
-      <div class="section-title">
-        <small>Nueva colección</small>
-        <h2>Productos destacados</h2>
-      </div>
-
-      <div class="products">
-
-
-        <article class="product" data-name="Vestido elegante">
-
-          <div class="product-image">
-
-            <img
-              src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80"
-              alt="Vestido elegante"
-            >
-
-          </div>
-
-          <div class="product-info">
-
-            <span class="product-category">Ropa</span>
-
-            <h3>Vestido elegante</h3>
-
-            <span class="price">C$850</span>
-
-            <button
-              class="buy-btn"
-              onclick="buyProduct('Vestido elegante','C$850')"
-            >
-              Comprar por WhatsApp
-            </button>
-
-          </div>
-
-        </article>
-
-
-        <article class="product" data-name="Blusa moderna">
-
-          <div class="product-image">
-
-            <img
-              src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80"
-              alt="Blusa moderna"
-            >
-
-          </div>
-
-          <div class="product-info">
-
-            <span class="product-category">Ropa</span>
-
-            <h3>Blusa moderna</h3>
-
-            <span class="price">C$550</span>
-
-            <button
-              class="buy-btn"
-              onclick="buyProduct('Blusa moderna','C$550')"
-            >
-              Comprar por WhatsApp
-            </button>
-
-          </div>
-
-        </article>
-
-
-        <article class="product" data-name="Camisa casual">
-
-          <div class="product-image">
-
-            <img
-              src="https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80"
-              alt="Camisa casual"
-            >
-
-          </div>
-
-          <div class="product-info">
-
-            <span class="product-category">Ropa</span>
-
-            <h3>Camisa casual</h3>
-
-            <span class="price">C$650</span>
-
-            <button
-              class="buy-btn"
-              onclick="buyProduct('Camisa casual','C$650')"
-            >
-              Comprar por WhatsApp
-            </button>
-
-          </div>
-
-        </article>
-
-
-        <article class="product" data-name="Calzado urbano">
-
-          <div class="product-image">
-
-            <img
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
-              alt="Calzado urbano"
-            >
-
-          </div>
-
-          <div class="product-info">
-
-            <span class="product-category">Zapatos</span>
-
-            <h3>Calzado urbano</h3>
-
-            <span class="price">C$1,250</span>
-
-            <span class="old-price">C$1,450</span>
-
-            <button
-              class="buy-btn"
-              onclick="buyProduct('Calzado urbano','C$1,250')"
-            >
-              Comprar por WhatsApp
-            </button>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <section class="promo" id="ofertas">
-
-      <h2>Tu próximo look empieza aquí.</h2>
-
-      <p>
-        Encuentra piezas especiales y descubre nuevas formas de expresar
-        tu estilo. Compra directamente con GarChéz Boutique.
-      </p>
-
-      <a href="#productos" class="btn">
-        Ver productos
-      </a>
-
-    </section>
-
-
-    <section class="section shipping" id="envios">
-
-      <div class="shipping-box">
-
-        <h2>Envíos en Nicaragua</h2>
-
-        <p>
-          Realizamos nuestros envíos mediante CargoTrans.
-          Escríbenos por WhatsApp para consultar disponibilidad,
-          costo y tiempo estimado de entrega según tu ubicación.
-        </p>
-
-        <div class="shipping-highlight">
-          🚚 Envío GRATIS en el centro de Chinandega y El Viejo
         </div>
 
-      </div>
+      </article>
 
-    </section>
+    `;
 
+  }).join("");
 
-    <section class="section about">
+}
 
-      <div class="about-box">
+function filterProducts(category){
 
-        <h2>Sobre GarChéz Boutique</h2>
+  currentCategory = category;
 
-        <p>
-          GarChéz Boutique nace con la idea de ofrecer moda,
-          estilo y una experiencia de compra cercana y personalizada
-          para nuestros clientes en Nicaragua.
-        </p>
+  renderProducts();
 
-        <br>
+}
 
-        <p>
-          <strong>Propietarios:</strong>
-          Kevin Garcia y Keyling Sanchez
-        </p>
+document.getElementById("search").addEventListener("input", renderProducts);
 
-      </div>
+loadProducts();
 
-    </section>
-
-  </main>
-
-
-  <footer>
-
-    <div class="footer-inner">
-
-      <div class="footer-brand">
-
-        <h2>GarChéz Boutique</h2>
-
-        <p>
-          Moda, estilo y personalidad.
-          Compra en línea y recibe tus productos en Nicaragua.
-        </p>
-
-      </div>
-
-
-      <div>
-
-        <h3>Comprar</h3>
-
-        <ul>
-          <li>Ropa</li>
-          <li>Zapatos</li>
-          <li>Nueva colección</li>
-          <li>Ofertas</li>
-        </ul>
-
-      </div>
-
-
-      <div>
-
-        <h3>Ayuda</h3>
-
-        <ul>
-          <li>Cómo comprar</li>
-          <li>Envíos</li>
-          <li>Preguntas frecuentes</li>
-          <li>WhatsApp</li>
-        </ul>
-
-      </div>
-
-
-      <div>
-
-        <h3>GarChéz Boutique</h3>
-
-        <ul>
-          <li>Nicaragua 🇳🇮</li>
-          <li>Chinandega</li>
-          <li>El Viejo</li>
-          <li>Kevin Garcia & Keyling Sanchez</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-
-    <div class="copyright">
-      © 2026 GarChéz Boutique · Todos los derechos reservados.
-    </div>
-
-  </footer>
-
-
-  <!-- BOTÓN WHATSAPP -->
-
-  <a
-    class="whatsapp"
-    href="https://wa.me/50587961399"
-    target="_blank"
-    title="Escríbenos por WhatsApp"
-  >
-    ☎
-  </a>
-
-
-  <script>
-
-    const phone = "50587961399";
-
-
-    function buyProduct(productName, price) {
-
-      const message =
-        "Hola, GarChéz Boutique. Estoy interesada en comprar: "
-        + productName
-        + " - "
-        + price
-        + ". ¿Me pueden dar más información?";
-
-      const url =
-        "https://wa.me/"
-        + phone
-        + "?text="
-        + encodeURIComponent(message);
-
-      window.open(url, "_blank");
-
-    }
-
-
-    function searchProducts() {
-
-      const search =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
-
-      const products =
-        document.querySelectorAll(".product");
-
-
-      products.forEach(product => {
-
-        const name =
-          product
-          .getAttribute("data-name")
-          .toLowerCase();
-
-        if (name.includes(search)) {
-
-          product.style.display = "";
-
-        } else {
-
-          product.style.display = "none";
-
-        }
-
-      });
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
