@@ -44,7 +44,11 @@ content:
             - Damas
             - Caballeros
             - Calzado
+            - Bolsos
+            - Gorras y Sombreros
+            - Relojes
             - Accesorios
+            - Temporada
             - Ofertas
 
       - name: tallas
