@@ -1,504 +1,1762 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>GarChéz Boutique</title>
-  <meta name="description" content="GarChéz Boutique - Moda, ropa, calzado y accesorios en 🇳🇮 Nicaragua.">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GarChéz Boutique</title>
+<meta name="description" content="GarChéz Boutique - Moda, calzado y accesorios en Nicaragua.">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f8f7f5;
+  color:#222;
+}
+
+button,a{
+  font-family:inherit;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* TOP */
+.topbar{
+  background:#171717;
+  color:white;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+}
+
+/* HEADER */
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid #e8e8e8;
+}
+
+.header-main{
+  max-width:1250px;
+  margin:auto;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:260px;
+}
+
+.brand img{
+  width:62px;
+  height:62px;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+.brand-name{
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.brand-name span{
+  font-weight:400;
+  font-size:19px;
+}
+
+.search{
+  flex:1;
+  display:flex;
+  background:#f2f2f2;
+  border:1px solid #ddd;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.search input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:14px 18px;
+  font-size:14px;
+}
+
+.search button{
+  border:0;
+  background:#171717;
+  color:white;
+  padding:0 20px;
+}
+
+.header-actions{
+  display:flex;
+  gap:15px;
+  white-space:nowrap;
+  font-size:13px;
+}
+
+/* NAV */
+nav{
+  border-top:1px solid #eee;
+  background:white;
+}
+
+.nav-inner{
+  max-width:1250px;
+  margin:auto;
+  padding:12px 22px;
+  display:flex;
+  gap:25px;
+  overflow-x:auto;
+  font-size:14px;
+  font-weight:600;
+}
+
+.nav-inner a:hover{
+  color:#a67c52;
+}
+
+/* HERO */
+.hero{
+  min-height:520px;
+  background:
+    linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.38)),
+    url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+  display:flex;
+  align-items:center;
+}
+
+.hero-content{
+  max-width:1250px;
+  width:100%;
+  margin:auto;
+  padding:60px 25px;
+  color:white;
+}
+
+.hero-logo{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:20px;
+  background:white;
+}
+
+.hero small{
+  text-transform:uppercase;
+  letter-spacing:4px;
+}
+
+.hero h1{
+  font-size:clamp(44px,7vw,80px);
+  line-height:.95;
+  max-width:750px;
+  margin:18px 0;
+}
+
+.hero p{
+  max-width:550px;
+  line-height:1.6;
+  font-size:18px;
+  margin-bottom:28px;
+}
+
+.btn{
+  display:inline-block;
+  background:white;
+  color:#171717;
+  padding:15px 28px;
+  font-weight:700;
+  border:0;
+  border-radius:3px;
+}
+
+/* BENEFITS */
+.benefits{
+  background:white;
+  border-bottom:1px solid #eee;
+}
+
+.benefits-inner{
+  max-width:1250px;
+  margin:auto;
+  padding:25px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.benefit{
+  text-align:center;
+  padding:10px;
+}
+
+.benefit strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.benefit span{
+  color:#777;
+  font-size:13px;
+}
+
+/* GENERAL */
+.section{
+  max-width:1250px;
+  margin:auto;
+  padding:65px 25px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.section-title small{
+  color:#a67c52;
+  text-transform:uppercase;
+  letter-spacing:3px;
+}
+
+.section-title h2{
+  font-size:38px;
+  margin-top:10px;
+}
+
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.category{
+  height:300px;
+  position:relative;
+  overflow:hidden;
+  color:white;
+  cursor:pointer;
+}
+
+.category img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.category:hover img{
+  transform:scale(1.06);
+}
+
+.category-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent 35%,rgba(0,0,0,.78));
+  display:flex;
+  align-items:flex-end;
+  padding:23px;
+}
+
+.category h3{
+  font-size:24px;
+}
+
+/* FILTERS */
+.catalog-tools{
+  margin-bottom:30px;
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:9px;
+}
+
+.filter{
+  border:1px solid #d8d8d8;
+  background:white;
+  padding:10px 16px;
+  border-radius:25px;
+  font-size:13px;
+}
+
+.filter:hover,
+.filter.active{
+  background:#171717;
+  color:white;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+}
+
+.product{
+  background:white;
+  border:1px solid #eee;
+  overflow:hidden;
+}
+
+.product-image{
+  height:350px;
+  overflow:hidden;
+  background:#eee;
+  cursor:pointer;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.product:hover .product-image img{
+  transform:scale(1.04);
+}
+
+.product-info{
+  padding:18px;
+}
+
+.product-category{
+  color:#999;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.product h3{
+  font-size:17px;
+  margin:8px 0;
+}
+
+.price{
+  font-size:18px;
+  font-weight:700;
+}
+
+.old-price{
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-left:7px;
+}
+
+.buy-btn{
+  width:100%;
+  border:0;
+  background:#171717;
+  color:white;
+  padding:13px;
+  margin-top:15px;
+  font-weight:700;
+}
+
+.buy-btn:hover{
+  background:#a67c52;
+}
+
+.no-products{
+  display:none;
+  text-align:center;
+  padding:40px 20px;
+  background:white;
+  border:1px solid #eee;
+  color:#777;
+}
+
+/* PROMO */
+.promo{
+  background:#e9e2da;
+  padding:65px 25px;
+  text-align:center;
+}
+
+.promo h2{
+  font-size:40px;
+  margin-bottom:12px;
+}
+
+.promo p{
+  max-width:600px;
+  margin:0 auto 25px;
+  color:#555;
+  line-height:1.6;
+}
+
+.promo .btn{
+  background:#171717;
+  color:white;
+}
+
+/* SHIPPING */
+.shipping{
+  background:white;
+}
+
+.shipping-box{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+
+.shipping-box h2{
+  font-size:35px;
+  margin-bottom:15px;
+}
+
+.shipping-box p{
+  color:#666;
+  line-height:1.7;
+}
+
+.shipping-highlight{
+  margin-top:25px;
+  padding:20px;
+  background:#f5f1ec;
+  font-weight:700;
+}
+
+/* ABOUT */
+.about{
+  text-align:center;
+}
+
+.about-box{
+  max-width:800px;
+  margin:auto;
+}
+
+.about-box h2{
+  font-size:35px;
+  margin-bottom:18px;
+}
+
+.about-box p{
+  color:#666;
+  line-height:1.8;
+}
+
+/* FOOTER */
+footer{
+  background:#171717;
+  color:white;
+  padding:55px 25px 25px;
+}
+
+.footer-inner{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+}
+
+.footer-logo{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  object-fit:cover;
+  background:white;
+  margin-bottom:15px;
+}
+
+.footer-brand p,
+footer li{
+  color:#aaa;
+  font-size:14px;
+  line-height:1.8;
+}
+
+footer h3{
+  margin-bottom:15px;
+  font-size:15px;
+}
+
+footer ul{
+  list-style:none;
+}
+
+.copyright{
+  max-width:1250px;
+  margin:40px auto 0;
+  padding-top:20px;
+  border-top:1px solid #333;
+  color:#777;
+  font-size:12px;
+  text-align:center;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#25D366;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  box-shadow:0 5px 20px rgba(0,0,0,.25);
+  z-index:2000;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:3000;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal.show{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-box{
+  width:100%;
+  max-width:900px;
+  background:white;
+  position:relative;
+  border-radius:5px;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+.modal-close{
+  position:absolute;
+  right:15px;
+  top:12px;
+  border:0;
+  background:white;
+  font-size:28px;
+  z-index:2;
+}
+
+.modal-image{
+  min-height:500px;
+  background:#eee;
+}
+
+.modal-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.modal-info{
+  padding:40px 30px;
+}
+
+.modal-info small{
+  color:#999;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.modal-info h2{
+  font-size:32px;
+  margin:12px 0;
+}
+
+.modal-price{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.modal-info p{
+  color:#666;
+  line-height:1.7;
+  margin:15px 0;
+}
+
+.detail{
+  margin:10px 0;
+  padding:12px;
+  background:#f7f5f2;
+}
+
+.modal-buy{
+  width:100%;
+  border:0;
+  background:#171717;
+  color:white;
+  padding:15px;
+  font-weight:bold;
+  margin-top:20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .header-main{
+    flex-wrap:wrap;
+  }
+
+  .brand{
+    min-width:auto;
+  }
+
+  .search{
+    order:3;
+    flex-basis:100%;
+  }
+
+  .benefits-inner,
+  .categories,
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .footer-inner{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .header-main{
+    padding:12px 15px;
+  }
+
+  .brand img{
+    width:50px;
+    height:50px;
+  }
+
+  .brand-name{
+    font-size:21px;
+  }
+
+  .brand-name span{
+    font-size:15px;
+  }
+
+  .header-actions{
+    display:none;
+  }
+
+  .hero{
+    min-height:500px;
+  }
+
+  .hero-content{
+    padding:45px 20px;
+  }
+
+  .hero-logo{
+    width:90px;
+    height:90px;
+  }
+
+  .benefits-inner,
+  .categories,
+  .products,
+  .footer-inner{
+    grid-template-columns:1fr;
+  }
+
+  .product-image{
+    height:420px;
+  }
+
+  .category{
+    height:360px;
+  }
+
+  .section-title h2{
+    font-size:30px;
+  }
+
+  .modal-box{
+    grid-template-columns:1fr;
+  }
+
+  .modal-image{
+    height:350px;
+    min-height:0;
+  }
+
+  .modal-info{
+    padding:25px 20px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  🇳🇮 Envíos a toda Nicaragua · Compra fácil y atención por WhatsApp
+</div>
+
+<header>
+
+  <div class="header-main">
+
+    <a href="#inicio" class="brand">
+      <img src="logo_garchez.jpeg" alt="GarChéz Boutique">
+      <div class="brand-name">
+        GarChéz <span>Boutique</span>
+      </div>
+    </a>
+
+    <div class="search">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="¿Qué estás buscando?"
+        oninput="searchProducts()"
+      >
+      <button onclick="searchProducts()">🔍</button>
+    </div>
+
+    <div class="header-actions">
+      <span>♡ Favoritos</span>
+      <span>🛍 Carrito</span>
+    </div>
+
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#inicio">Inicio</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#productos">Catálogo</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#envios">Envíos</a>
+    </div>
+  </nav>
+
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+
+  <div class="hero-content">
+
+    <img
+      class="hero-logo"
+      src="logo_garchez.jpeg"
+      alt="GarChéz Boutique"
+    >
+
+    <small>GarChéz Boutique · Nicaragua</small>
+
+    <h1>Estilo que habla por ti.</h1>
+
+    <p>
+      Descubre ropa, calzado y accesorios seleccionados
+      para vestir con personalidad, elegancia y confianza.
+    </p>
+
+    <a href="#productos" class="btn">
+      Comprar ahora
+    </a>
+
+  </div>
+
+</section>
+
+
+<section class="benefits">
+
+  <div class="benefits-inner">
+
+    <div class="benefit">
+      <strong>🇳🇮 Envíos nacionales</strong>
+      <span>Enviamos a diferentes zonas de Nicaragua.</span>
+    </div>
+
+    <div class="benefit">
+      <strong>📦 CargoTrans</strong>
+      <span>Envíos seguros mediante CargoTrans.</span>
+    </div>
+
+    <div class="benefit">
+      <strong>💬 Compra por WhatsApp</strong>
+      <span>Atención personalizada para realizar tu pedido.</span>
+    </div>
+
+    <div class="benefit">
+      <strong>✨ Selección especial</strong>
+      <span>Moda pensada para ti.</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="categorias">
+
+  <div class="section-title">
+    <small>Explora</small>
+    <h2>Compra por categoría</h2>
+  </div>
+
+  <div class="categories">
+
+    <div class="category" onclick="filterCategory('Vestidos')">
+      <img
+        src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80"
+        alt="Vestidos"
+      >
+      <div class="category-overlay">
+        <h3>Vestidos</h3>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Camisas')">
+      <img
+        src="https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80"
+        alt="Camisas"
+      >
+      <div class="category-overlay">
+        <h3>Camisas</h3>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Blusas')">
+      <img
+        src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80"
+        alt="Blusas"
+      >
+      <div class="category-overlay">
+        <h3>Blusas</h3>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Calzado')">
+      <img
+        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+        alt="Calzado"
+      >
+      <div class="category-overlay">
+        <h3>Calzado</h3>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="productos">
+
+  <div class="section-title">
+    <small>Catálogo</small>
+    <h2 id="catalogTitle">Todos los productos</h2>
+  </div>
+
+  <div class="catalog-tools">
+
+    <div class="filters">
+
+      <button class="filter active" onclick="filterCategory('Todos',this)">
+        Todos
+      </button>
+
+      <button class="filter" onclick="filterCategory('Damas',this)">
+        Damas
+      </button>
+
+      <button class="filter" onclick="filterCategory('Caballeros',this)">
+        Caballeros
+      </button>
+
+      <button class="filter" onclick="filterCategory('Vestidos',this)">
+        Vestidos
+      </button>
+
+      <button class="filter" onclick="filterCategory('Camisas',this)">
+        Camisas
+      </button>
+
+      <button class="filter" onclick="filterCategory('Blusas',this)">
+        Blusas
+      </button>
+
+      <button class="filter" onclick="filterCategory('Calzado',this)">
+        Calzado
+      </button>
+
+      <button class="filter" onclick="filterCategory('Bolsos',this)">
+        Bolsos
+      </button>
+
+      <button class="filter" onclick="filterCategory('Gorras y Sombreros',this)">
+        Gorras y Sombreros
+      </button>
+
+      <button class="filter" onclick="filterCategory('Relojes',this)">
+        Relojes
+      </button>
+
+      <button class="filter" onclick="filterCategory('Accesorios',this)">
+        Accesorios
+      </button>
+
+      <button class="filter" onclick="filterCategory('Ofertas',this)">
+        Ofertas
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="products" id="productsContainer"></div>
+
+  <div class="no-products" id="noProducts">
+    No encontramos productos en esta categoría.
+  </div>
+
+</section>
+
+
+<section class="promo" id="ofertas">
+
+  <h2>Tu próximo look empieza aquí.</h2>
+
+  <p>
+    Encuentra piezas especiales y descubre nuevas formas
+    de expresar tu estilo.
+  </p>
+
+  <a href="#productos" class="btn">
+    Ver catálogo
+  </a>
+
+</section>
+
+
+<section class="section shipping" id="envios">
+
+  <div class="shipping-box">
+
+    <h2>Envíos en Nicaragua 🇳🇮</h2>
+
+    <p>
+      Realizamos nuestros envíos mediante CargoTrans.
+      Escríbenos por WhatsApp para consultar disponibilidad,
+      costo y tiempo estimado de entrega.
+    </p>
+
+    <div class="shipping-highlight">
+      🚚 Envío GRATIS 📍 Chinandega y El Viejo 🇳🇮
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section about">
+
+  <div class="about-box">
+
+    <img
+      src="logo_garchez.jpeg"
+      alt="GarChéz Boutique"
+      style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:20px;"
+    >
+
+    <h2>Sobre GarChéz Boutique</h2>
+
+    <p>
+      GarChéz Boutique nace con la idea de ofrecer moda,
+      estilo y una experiencia de compra cercana y personalizada
+      para nuestros clientes en Nicaragua.
+    </p>
+
+    <br>
+
+    <p>
+      <strong>Propietarios:</strong>
+      Kevin Garcia y Keyling Sanchez
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+
+      <img
+        class="footer-logo"
+        src="logo_garchez.jpeg"
+        alt="GarChéz Boutique"
+      >
+
+      <h2>GarChéz Boutique</h2>
+
+      <p>
+        Moda, estilo y personalidad.
+        Compra en línea y recibe tus productos en Nicaragua 🇳🇮.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3>Comprar</h3>
+
+      <ul>
+        <li><a href="#productos">Damas</a></li>
+        <li><a href="#productos">Caballeros</a></li>
+        <li><a href="#productos">Calzado</a></li>
+        <li><a href="#productos">Accesorios</a></li>
+      </ul>
+
+    </div>
+
+
+    <div>
+
+      <h3>Ayuda</h3>
+
+      <ul>
+        <li><a href="#envios">Envíos</a></li>
+        <li>Cómo comprar</li>
+        <li>WhatsApp</li>
+      </ul>
+
+    </div>
+
+
+    <div>
+
+      <h3>GarChéz Boutique</h3>
+
+      <ul>
+        <li>Nicaragua 🇳🇮</li>
+        <li>📍 Chinandega</li>
+        <li>📍 El Viejo</li>
+        <li>Kevin Garcia & Keyling Sanchez</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <div class="copyright">
+    © 2026 GarChéz Boutique · Todos los derechos reservados.
+  </div>
+
+</footer>
+
+
+<a
+  class="whatsapp"
+  href="https://wa.me/50587961399"
+  target="_blank"
+  title="Escríbenos por WhatsApp"
+>
+  ☎
+</a>
+
+
+<!-- MODAL DEL PRODUCTO -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <button class="modal-close" onclick="closeModal()">
+      ×
+    </button>
+
+    <div class="modal-image">
+      <img id="modalImage" src="" alt="">
+    </div>
+
+    <div class="modal-info">
+
+      <small id="modalCategory"></small>
+
+      <h2 id="modalName"></h2>
+
+      <div class="modal-price">
+        <span id="modalPrice"></span>
+        <span id="modalOldPrice" class="old-price"></span>
+      </div>
+
+      <div class="detail">
+        <strong>Tallas:</strong>
+        <span id="modalSizes">Consultar</span>
+      </div>
+
+      <div class="detail">
+        <strong>Colores:</strong>
+        <span id="modalColors">Consultar</span>
+      </div>
+
+      <p id="modalDescription">
+        Producto disponible en GarChéz Boutique.
+      </p>
+
+      <button
+        class="modal-buy"
+        onclick="buyModalProduct()"
+      >
+        💬 Comprar por WhatsApp
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const PHONE = "50587961399";
+
+let allProducts = [];
+let currentProduct = null;
+
+
+/* PRODUCTOS DE DEMOSTRACIÓN */
+
+const demoProducts = [
+
+  {
+    nombre:"Vestido elegante",
+    foto:"https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80",
+    precio:"C$850",
+    precioAnterior:"",
+    categoria:"Vestidos",
+    tallas:"S, M, L",
+    colores:"Negro, beige",
+    descripcion:"Vestido elegante ideal para diferentes ocasiones."
+  },
+
+  {
+    nombre:"Blusa moderna",
+    foto:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80",
+    precio:"C$550",
+    precioAnterior:"",
+    categoria:"Blusas",
+    tallas:"S, M, L",
+    colores:"Varios",
+    descripcion:"Blusa moderna y versátil para complementar tu estilo."
+  },
+
+  {
+    nombre:"Camisa casual",
+    foto:"https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80",
+    precio:"C$650",
+    precioAnterior:"",
+    categoria:"Camisas",
+    tallas:"S, M, L, XL",
+    colores:"Blanco, azul",
+    descripcion:"Camisa casual para un estilo cómodo y moderno."
+  },
+
+  {
+    nombre:"Calzado urbano",
+    foto:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
+    precio:"C$1,250",
+    precioAnterior:"C$1,450",
+    categoria:"Calzado",
+    tallas:"36, 37, 38, 39, 40",
+    colores:"Rojo",
+    descripcion:"Calzado urbano moderno y cómodo."
+  }
+
+];
+
+
+/* NORMALIZAR TEXTO */
+
+function normalize(value){
+
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .trim();
+
+}
+
+
+/* OBTENER CAMPOS DEL CMS */
+
+function getField(obj,names){
+
+  for(const name of names){
+
+    if(
+      obj &&
+      Object.prototype.hasOwnProperty.call(obj,name) &&
+      obj[name] !== null &&
+      obj[name] !== undefined &&
+      String(obj[name]).trim() !== ""
+    ){
+
+      return obj[name];
+
+    }
+
+  }
+
+  return "";
+
+}
+
+
+/* CONVERTIR FOTO DEL CMS */
+
+function getImage(value){
+
+  if(!value) return "";
+
+  if(typeof value === "string"){
+    return value;
+  }
+
+  if(typeof value === "object"){
+
+    return (
+      value.url ||
+      value.src ||
+      value.path ||
+      value.file ||
+      value.image ||
+      ""
+    );
+
+  }
+
+  return "";
+
+}
+
+
+/* CONVERTIR PRODUCTO */
+
+function convertProduct(item){
+
+  return {
+
+    nombre:getField(item,[
+      "nombre",
+      "Nombre del producto",
+      "name",
+      "title",
+      "titulo"
+    ]),
+
+    foto:getImage(
+      getField(item,[
+        "foto",
+        "Foto del producto",
+        "image",
+        "imagen",
+        "photo"
+      ])
+    ),
+
+    precio:getField(item,[
+      "precio",
+      "Precio",
+      "price"
+    ]),
+
+    precioAnterior:getField(item,[
+      "precioAnterior",
+      "Precio anterior",
+      "oldPrice",
+      "precio_anterior"
+    ]),
+
+    categoria:getField(item,[
+      "categoria",
+      "Categoría",
+      "category"
+    ]),
+
+    tallas:getField(item,[
+      "tallas",
+      "Tallas",
+      "sizes"
+    ]),
+
+    colores:getField(item,[
+      "colores",
+      "Colores",
+      "colors"
+    ]),
+
+    descripcion:getField(item,[
+      "descripcion",
+      "Descripción",
+      "description"
+    ])
+
+  };
+
+}
+
+
+/* CARGAR PRODUCTOS DE PAGES CMS */
+
+async function loadProducts(){
+
+  try{
+
+    const response = await fetch(
+      "data/productos.json?version=" + Date.now()
+    );
+
+    if(!response.ok){
+      throw new Error("No se pudo cargar productos.json");
+    }
+
+    const data = await response.json();
+
+    let items = [];
+
+    if(Array.isArray(data)){
+      items = data;
+    }
+    else if(Array.isArray(data.productos)){
+      items = data.productos;
+    }
+    else if(Array.isArray(data.products)){
+      items = data.products;
+    }
+    else if(Array.isArray(data.items)){
+      items = data.items;
+    }
+
+    const cmsProducts = items
+      .map(convertProduct)
+      .filter(product => product.nombre);
+
+    if(cmsProducts.length > 0){
+
+      allProducts = cmsProducts;
+
+    }
+    else{
+
+      allProducts = demoProducts;
+
+    }
+
+  }
+  catch(error){
+
+    console.log("Usando productos de demostración:",error);
+
+    allProducts = demoProducts;
+
+  }
+
+  renderProducts(allProducts);
+
+}
+
+
+/* MOSTRAR PRODUCTOS */
+
+function renderProducts(products){
 
-    html {
-      scroll-behavior: smooth;
-    }
+  const container =
+    document.getElementById("productsContainer");
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f8f7f5;
-      color: #222;
-    }
+  const noProducts =
+    document.getElementById("noProducts");
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+  container.innerHTML = "";
 
-    button {
-      font-family: inherit;
-      cursor: pointer;
-    }
+  if(!products.length){
 
-    /* =========================
-       BARRA SUPERIOR
-    ========================= */
-
-    .topbar {
-      background: #171717;
-      color: white;
-      text-align: center;
-      padding: 9px;
-      font-size: 13px;
-    }
+    noProducts.style.display = "block";
+    return;
 
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      background: white;
-      border-bottom: 1px solid #e8e8e8;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+  }
 
-    .header-main {
-      max-width: 1250px;
-      margin: auto;
-      padding: 14px 25px;
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
+  noProducts.style.display = "none";
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      white-space: nowrap;
-      min-width: 250px;
-    }
 
-    .logo img {
-      width: 68px;
-      height: 68px;
-      object-fit: contain;
-      border-radius: 50%;
-      display: block;
-    }
+  products.forEach((product,index)=>{
 
-    .brand-name {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
+    const card =
+      document.createElement("article");
 
-    .brand-name strong {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 29px;
-      letter-spacing: .5px;
-      color: #171717;
-    }
+    card.className = "product";
+
+    const oldPrice =
+      product.precioAnterior
+      ? `<span class="old-price">${escapeHtml(product.precioAnterior)}</span>`
+      : "";
+
+    const image =
+      product.foto || demoProducts[0].foto;
+
+
+    card.innerHTML = `
+
+      <div
+        class="product-image"
+        onclick="openProduct(${index})"
+      >
+
+        <img
+          src="${escapeAttribute(image)}"
+          alt="${escapeAttribute(product.nombre)}"
+          onerror="this.src='${demoProducts[0].foto}'"
+        >
 
-    .brand-name small {
-      margin-top: 6px;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #a67c52;
-      font-weight: 700;
-    }
+      </div>
 
-    .search {
-      flex: 1;
-      display: flex;
-      background: #f2f2f2;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid #ddd;
-    }
+      <div class="product-info">
 
-    .search input {
-      flex: 1;
-      border: 0;
-      outline: none;
-      background: transparent;
-      padding: 14px 18px;
-      font-size: 14px;
-    }
+        <span class="product-category">
+          ${escapeHtml(product.categoria || "Producto")}
+        </span>
 
-    .search button {
-      border: 0;
-      background: #171717;
-      color: white;
-      padding: 0 22px;
-    }
+        <h3>
+          ${escapeHtml(product.nombre)}
+        </h3>
 
-    .header-actions {
-      display: flex;
-      gap: 18px;
-      font-size: 14px;
-      white-space: nowrap;
-    }
+        <span class="price">
+          ${escapeHtml(product.precio || "Consultar")}
+        </span>
 
-    nav {
-      border-top: 1px solid #eee;
-      background: white;
-    }
+        ${oldPrice}
 
-    .nav-inner {
-      max-width: 1250px;
-      margin: auto;
-      padding: 13px 25px;
-      display: flex;
-      gap: 30px;
-      font-size: 14px;
-      font-weight: 600;
-      overflow-x: auto;
-    }
+        <button
+          class="buy-btn"
+          onclick="buyProductByIndex(${index})"
+        >
+          Comprar por WhatsApp
+        </button>
 
-    .nav-inner a {
-      white-space: nowrap;
-    }
+      </div>
 
-    .nav-inner a:hover {
-      color: #a67c52;
-    }
+    `;
 
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 560px;
-      background:
-        linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,.40)),
-        url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85")
-        center/cover;
-      display: flex;
-      align-items: center;
-    }
+    container.appendChild(card);
 
-    .hero-content {
-      max-width: 1250px;
-      width: 100%;
-      margin: auto;
-      padding: 60px 25px;
-      color: white;
-    }
+  });
 
-    .hero-logo {
-      width: 115px;
-      height: 115px;
-      object-fit: contain;
-      border-radius: 50%;
-      margin-bottom: 22px;
-      background: white;
-    }
+}
 
-    .hero-content small {
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      font-size: 13px;
-    }
 
-    .hero-content h1 {
-      font-size: clamp(45px, 7vw, 82px);
-      line-height: .95;
-      max-width: 700px;
-      margin: 20px 0;
-    }
+/* FILTRAR CATEGORÍAS */
 
-    .hero-content p {
-      font-size: 18px;
-      max-width: 500px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
+function filterCategory(category,button){
 
-    .btn {
-      display: inline-block;
-      border: 0;
-      background: white;
-      color: #171717;
-      padding: 15px 28px;
-      font-weight: 700;
-      border-radius: 3px;
-      transition: .2s;
-    }
+  document
+    .querySelectorAll(".filter")
+    .forEach(btn => btn.classList.remove("active"));
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+  if(button){
+    button.classList.add("active");
+  }
 
-    /* =========================
-       BENEFICIOS
-    ========================= */
+  const wanted = normalize(category);
 
-    .benefits {
-      background: white;
-      border-bottom: 1px solid #eee;
-    }
+  let filtered = allProducts;
 
-    .benefits-inner {
-      max-width: 1250px;
-      margin: auto;
-      padding: 25px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+  if(wanted !== "todos"){
 
-    .benefit {
-      text-align: center;
-      padding: 10px;
-    }
+    filtered = allProducts.filter(product => {
 
-    .benefit strong {
-      display: block;
-      margin-bottom: 6px;
-    }
+      const cat = normalize(product.categoria);
+      const name = normalize(product.nombre);
 
-    .benefit span {
-      color: #777;
-      font-size: 13px;
-    }
+      if(wanted === "ofertas"){
+        return !!product.precioAnterior;
+      }
 
-    /* =========================
-       SECCIONES
-    ========================= */
-
-    .section {
-      max-width: 1250px;
-      margin: auto;
-      padding: 70px 25px;
-    }
+      if(wanted === "damas"){
+        return cat.includes("damas") ||
+               cat.includes("mujer") ||
+               cat.includes("femen");
+      }
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+      if(wanted === "caballeros"){
+        return cat.includes("caballero") ||
+               cat.includes("hombre") ||
+               cat.includes("mascul");
+      }
 
-    .section-title small {
-      color: #a67c52;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
+      if(wanted === "calzado"){
+        return cat.includes("calzado") ||
+               cat.includes("zapato") ||
+               cat.includes("tenis");
+      }
 
-    .section-title h2 {
-      font-size: 38px;
-      margin-top: 10px;
-    }
+      if(wanted === "gorras y sombreros"){
+        return cat.includes("gorra") ||
+               cat.includes("sombrero");
+      }
 
-    /* =========================
-       CATEGORÍAS
-    ========================= */
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
+      return cat === wanted ||
+             cat.includes(wanted) ||
+             name.includes(wanted);
 
-    .category {
-      height: 330px;
-      position: relative;
-      overflow: hidden;
-      color: white;
-      background: #ddd;
-      cursor: pointer;
-    }
+    });
 
-    .category img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: .4s;
-    }
+  }
 
-    .category:hover img {
-      transform: scale(1.05);
-    }
 
-    .category-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(transparent 40%, rgba(0,0,0,.78));
-      display: flex;
-      align-items: flex-end;
-      padding: 25px;
-    }
+  document.getElementById("catalogTitle").textContent =
+    category === "Todos"
+    ? "Todos los productos"
+    : category;
 
-    .category h3 {
-      font-size: 25px;
-    }
 
-    /* =========================
-       BOTONES DE CATEGORÍA
-    ========================= */
-
-    .category-menu {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 35px;
-    }
+  renderProducts(filtered);
 
-    .category-btn {
-      border: 1px solid #ddd;
-      background: white;
-      padding: 11px 18px;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: .2s;
-    }
 
-    .category-btn:hover,
-    .category-btn.active {
-      background: #171717;
-      color: white;
-      border-color: #171717;
-    }
+  document
+    .getElementById("productos")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
-    /* =========================
-       PRODUCTOS
-    ========================= */
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
+}
 
-    .product {
-      background: white;
-      border: 1px solid #eee;
-      position: relative;
-      overflow: hidden;
-      transition: .25s;
-    }
 
-    .product:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    }
+/* BUSCAR */
 
-    .product-image {
-      height: 350px;
-      overflow: hidden;
-      background: #eee;
-      cursor: pointer;
-    }
+function searchProducts(){
 
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: .4s;
-    }
+  const search =
+    normalize(
+      document.getElementById("searchInput").value
+    );
 
-    .product:hover img {
-      transform: scale(1.04);
-    }
+  if(!search){
 
-    .product-info {
-      padding: 18px;
-    }
+    renderProducts(allProducts);
+    return;
 
-    .product-category {
-      color: #999;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+  }
 
-    .product h3 {
-      font-size: 16px;
-      margin: 8px 0;
-    }
+  const filtered =
+    allProducts.filter(product => {
 
-    .price {
-      font-size: 18px;
-      font-weight: 700;
-    }
+      return normalize(product.nombre).includes(search) ||
+             normalize(product.categoria).includes(search) ||
+             normalize(product.descripcion).includes(search);
 
-    .old-price {
-      color: #999;
-      text-decoration: line-through;
-      font-size: 13px;
-      margin-left: 7px;
-    }
+    });
 
-    .product-short {
-      color: #777;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 8px;
-    }
+  renderProducts(filtered);
 
-    .buy-btn {
-      width: 100%;
-      border: 0;
-      background: #171717;
-      color: white;
-      padding: 13px;
-      margin-top: 15px;
-      font-weight: 700;
-    }
+}
 
-    .buy-btn:hover {
-      background: #a67c52;
-    }
 
-    .empty-products {
-      text-align: center;
-      padding: 50px 20px;
-      color: #777;
-      display: none;
-      grid-column: 1 / -1;
-    }
+/* ABRIR PRODUCTO */
 
-    /* =========================
-       MODAL DEL PRODUCTO
-    ========================= */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.72);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 3000;
-    }
+function openProduct(index){
 
-    .modal.show {
-      display: flex;
-    }
+  const visibleCards =
+    document.querySelectorAll(".product");
 
-    .modal-content {
-      background: white;
-      max-width: 900px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
+  if(!allProducts[index]) return;
 
-    .modal-image {
-      min-height: 500px;
-      background: #eee;
-    }
+  currentProduct = allProducts[index];
 
-    .modal-image img {
-      width: 100%;
-      height: 100%;
-      min-height: 500px;
-      object-fit: cover;
-    }
+  document.getElementById("modalImage").src =
+    currentProduct.foto || demoProducts[0].foto;
+
+  document.getElementById("modalCategory").textContent =
+    currentProduct.categoria || "Producto";
+
+  document.getElementById("modalName").textContent =
+    currentProduct.nombre || "Producto";
+
+  document.getElementById("modalPrice").textContent =
+    currentProduct.precio || "Consultar";
+
+  document.getElementById("modalOldPrice").textContent =
+    currentProduct.precioAnterior || "";
+
+  document.getElementById("modalSizes").textContent =
+    currentProduct.tallas || "Consultar";
+
+  document.getElementById("modalColors").textContent =
+    currentProduct.colores || "Consultar";
+
+  document.getElementById("modalDescription").textContent =
+    currentProduct.descripcion ||
+    "Producto disponible en GarChéz Boutique.";
+
+  document
+    .getElementById("productModal")
+    .classList.add("show");
+
+}
+
+
+/* CERRAR MODAL */
+
+function closeModal(){
+
+  document
+    .getElementById("productModal")
+    .classList.remove("show");
+
+}
+
+
+/* COMPRAR */
+
+function buyProductByIndex(index){
+
+  const product = allProducts[index];
+
+  if(!product) return;
+
+  buyProduct(
+    product.nombre,
+    product.precio
+  );
+
+}
 
-    .modal-info {
-      padding: 40px;
+
+/* WHATSAPP */
+
+function buyProduct(name,price){
+
+  const message =
+    "Hola, GarChéz Boutique. Estoy interesada/o en comprar: "
+    + name
+    + " - "
+    + price
+    + ". ¿Me pueden dar más información?";
+
+  const url =
+    "https://wa.me/"
+    + PHONE
+    + "?text="
+    + encodeURIComponent(message);
+
+  window.open(url,"_blank");
+
+}
+
+
+/* COMPRAR DESDE MODAL */
+
+function buyModalProduct(){
+
+  if(!currentProduct) return;
+
+  buyProduct(
+    currentProduct.nombre,
+    currentProduct.precio
+  );
+
+}
+
+
+/* SEGURIDAD PARA TEXTO */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+  return escapeHtml(value);
+
+}
+
+
+/* CERRAR MODAL AL TOCAR AFUERA */
+
+document
+  .getElementById("productModal")
+  .addEventListener("click",function(event){
+
+    if(event.target === this){
+      closeModal();
     }
+
+  });
+
+
+/* INICIAR */
+
+loadProducts();
+
+</script>
 
-    .modal-info .
+</body>
+</html>
