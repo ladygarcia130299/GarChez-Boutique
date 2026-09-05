@@ -1,1400 +1,1039 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GarChez Boutique</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
-  color:#171717;
-}
-
-/* BARRA SUPERIOR */
-.topbar{
-  background:#111;
-  color:#fff;
-  font-size:13px;
-  padding:9px 5%;
-  display:flex;
-  justify-content:space-between;
-}
-
-.topbar span{
-  opacity:.9;
-}
-
-/* HEADER */
-header{
-  background:#fff;
-  border-bottom:1px solid #e5e5e5;
-  padding:18px 5%;
-  display:flex;
-  align-items:center;
-  gap:30px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-.logo{
-  font-size:26px;
-  font-weight:800;
-  letter-spacing:-1px;
-  white-space:nowrap;
-}
-
-.logo span{
-  font-weight:400;
-}
-
-.search{
-  flex:1;
-  max-width:650px;
-  display:flex;
-  height:44px;
-}
-
-.search input{
-  flex:1;
-  border:1px solid #ccc;
-  border-right:none;
-  padding:0 16px;
-  font-size:15px;
-  outline:none;
-  border-radius:6px 0 0 6px;
-}
-
-.search button{
-  width:55px;
-  border:none;
-  background:#111;
-  color:white;
-  border-radius:0 6px 6px 0;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.header-actions{
-  display:flex;
-  gap:20px;
-  align-items:center;
-}
-
-.header-action{
-  font-size:13px;
-  cursor:pointer;
-  white-space:nowrap;
-}
-
-.header-action strong{
-  display:block;
-  font-size:15px;
-}
-
-.cart{
-  font-size:25px;
-  position:relative;
-}
-
-.cart-count{
-  position:absolute;
-  top:-9px;
-  right:-10px;
-  background:#d4a017;
-  color:#111;
-  width:19px;
-  height:19px;
-  border-radius:50%;
-  font-size:11px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-}
-
-/* NAVEGACIÓN */
-nav{
-  background:#fff;
-  border-bottom:1px solid #ddd;
-  padding:12px 5%;
-  display:flex;
-  gap:28px;
-  overflow-x:auto;
-}
-
-nav a{
-  text-decoration:none;
-  color:#222;
-  font-size:14px;
-  font-weight:600;
-  white-space:nowrap;
-}
-
-nav a:hover{
-  color:#b08400;
-}
-
-/* HERO */
-.hero{
-  max-width:1400px;
-  margin:22px auto;
-  padding:0 20px;
-}
-
-.hero-box{
-  min-height:390px;
-  border-radius:12px;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.15)),
-    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=85");
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  padding:55px;
-  color:#fff;
-}
-
-.hero-content{
-  max-width:570px;
-}
-
-.hero-content small{
-  text-transform:uppercase;
-  letter-spacing:3px;
-  font-size:12px;
-}
-
-.hero h1{
-  font-size:48px;
-  line-height:1.08;
-  margin:14px 0;
-}
-
-.hero p{
-  font-size:18px;
-  line-height:1.6;
-  margin-bottom:25px;
-}
-
-.hero-button{
-  display:inline-block;
-  background:#fff;
-  color:#111;
-  padding:14px 26px;
-  border-radius:5px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* BENEFICIOS */
-.benefits{
-  max-width:1400px;
-  margin:0 auto 25px;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.benefit{
-  background:#fff;
-  padding:20px;
-  border-radius:8px;
-  border:1px solid #e5e5e5;
-}
-
-.benefit strong{
-  display:block;
-  margin-bottom:7px;
-}
-
-.benefit p{
-  color:#666;
-  font-size:13px;
-}
-
-/* CONTENEDOR */
-.container{
-  max-width:1400px;
-  margin:auto;
-  padding:30px 20px;
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:22px;
-}
-
-.section-title h2{
-  font-size:27px;
-}
-
-.section-title p{
-  color:#777;
-  font-size:14px;
-}
-
-/* CATEGORÍAS */
-.categories{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.category{
-  height:180px;
-  border-radius:10px;
-  overflow:hidden;
-  position:relative;
-  cursor:pointer;
-}
-
-.category img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.3s;
-}
-
-.category:hover img{
-  transform:scale(1.05);
-}
-
-.category-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.7));
-  display:flex;
-  align-items:flex-end;
-  padding:20px;
-  color:white;
-}
-
-.category-overlay h3{
-  font-size:20px;
-}
-
-/* PRODUCTOS */
-.filters{
-  display:flex;
-  gap:10px;
-  margin-bottom:25px;
-  flex-wrap:wrap;
-}
-
-.filter{
-  border:1px solid #ccc;
-  background:white;
-  padding:9px 17px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-.filter.active{
-  background:#111;
-  color:white;
-  border-color:#111;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.product{
-  background:#fff;
-  border:1px solid #e4e4e4;
-  border-radius:9px;
-  overflow:hidden;
-  transition:.2s;
-  position:relative;
-}
-
-.product:hover{
-  box-shadow:0 8px 25px rgba(0,0,0,.10);
-  transform:translateY(-2px);
-}
-
-.product-image{
-  height:290px;
-  position:relative;
-  background:#eee;
-}
-
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#111;
-  color:white;
-  padding:6px 9px;
-  font-size:11px;
-  border-radius:3px;
-}
-
-.heart{
-  position:absolute;
-  right:12px;
-  top:12px;
-  background:#fff;
-  border:none;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  font-size:18px;
-  cursor:pointer;
-}
-
-.product-info{
-  padding:17px;
-}
-
-.product-category{
-  font-size:11px;
-  color:#888;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.product h3{
-  font-size:16px;
-  margin:7px 0;
-}
-
-.rating{
-  font-size:13px;
-  margin-bottom:8px;
-}
-
-.rating span{
-  color:#d09d00;
-}
-
-.price{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:14px;
-}
-
-.old-price{
-  color:#999;
-  text-decoration:line-through;
-  font-size:13px;
-  margin-left:7px;
-  font-weight:normal;
-}
-
-.product-buttons{
-  display:flex;
-  gap:8px;
-}
-
-.add{
-  flex:1;
-  border:1px solid #111;
-  background:#111;
-  color:white;
-  padding:11px;
-  border-radius:5px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.whatsapp{
-  width:48px;
-  border:none;
-  background:#25D366;
-  color:#fff;
-  border-radius:5px;
-  font-size:19px;
-  cursor:pointer;
-}
-
-/* PROMOCIÓN */
-.promo{
-  margin:45px 0;
-  background:#111;
-  color:white;
-  border-radius:10px;
-  padding:45px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:30px;
-}
-
-.promo h2{
-  font-size:29px;
-  margin-bottom:10px;
-}
-
-.promo p{
-  color:#ccc;
-}
-
-.promo-button{
-  background:white;
-  color:#111;
-  text-decoration:none;
-  padding:13px 25px;
-  border-radius:5px;
-  font-weight:bold;
-  white-space:nowrap;
-}
-
-/* ENVÍOS */
-.shipping{
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:30px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-}
-
-.shipping h2{
-  margin-bottom:10px;
-}
-
-.shipping p{
-  color:#666;
-  line-height:1.6;
-}
-
-/* FOOTER */
-footer{
-  background:#111;
-  color:white;
-  margin-top:50px;
-  padding:45px 5% 25px;
-}
-
-.footer-grid{
-  max-width:1400px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:40px;
-}
-
-footer h3{
-  margin-bottom:15px;
-}
-
-footer p,
-footer a{
-  color:#bbb;
-  font-size:13px;
-  line-height:2;
-  text-decoration:none;
-}
-
-.copyright{
-  max-width:1400px;
-  margin:35px auto 0;
-  padding-top:20px;
-  border-top:1px solid #333;
-  color:#888;
-  font-size:12px;
-}
-
-/* CARRITO */
-.cart-panel{
-  position:fixed;
-  right:-420px;
-  top:0;
-  width:400px;
-  max-width:100%;
-  height:100vh;
-  background:white;
-  z-index:500;
-  box-shadow:-5px 0 20px rgba(0,0,0,.2);
-  transition:.3s;
-  padding:25px;
-}
-
-.cart-panel.open{
-  right:0;
-}
-
-.cart-panel-header{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:25px;
-}
-
-.close{
-  border:none;
-  background:none;
-  font-size:25px;
-  cursor:pointer;
-}
-
-.cart-items{
-  min-height:200px;
-}
-
-.cart-item{
-  border-bottom:1px solid #ddd;
-  padding:15px 0;
-  display:flex;
-  justify-content:space-between;
-}
-
-.checkout{
-  margin-top:25px;
-  width:100%;
-  padding:14px;
-  border:none;
-  background:#25D366;
-  color:white;
-  font-weight:bold;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-/* RESPONSIVE */
-@media(max-width:1000px){
-  .products{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .benefits{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .footer-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-@media(max-width:750px){
-  header{
-    flex-wrap:wrap;
-    gap:12px;
-  }
-
-  .logo{
-    font-size:22px;
-  }
-
-  .search{
-    order:3;
-    width:100%;
-    max-width:none;
-  }
-
-  .header-action{
-    display:none;
-  }
-
-  .hero-box{
-    min-height:330px;
-    padding:30px;
-  }
-
-  .hero h1{
-    font-size:35px;
-  }
-
-  .categories{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
-
-  .product-image{
-    height:230px;
-  }
-
-  .benefits{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .shipping{
-    grid-template-columns:1fr;
-  }
-
-  .promo{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-}
-
-@media(max-width:480px){
-  .topbar{
-    font-size:10px;
-  }
-
-  .hero{
-    padding:0 10px;
-  }
-
-  .container{
-    padding:25px 10px;
-  }
-
-  .hero h1{
-    font-size:30px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .product-image{
-    height:190px;
-  }
-
-  .product-info{
-    padding:12px;
-  }
-
-  .product h3{
-    font-size:14px;
-  }
-
-  .price{
-    font-size:17px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GarChéz Boutique</title>
+  <meta name="description" content="GarChéz Boutique - Moda, ropa y zapatos en Nicaragua.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f8f7f5;
+      color: #222;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .topbar {
+      background: #171717;
+      color: white;
+      text-align: center;
+      padding: 9px;
+      font-size: 13px;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-main {
+      max-width: 1250px;
+      margin: auto;
+      padding: 20px 25px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      font-weight: 400;
+    }
+
+    .search {
+      flex: 1;
+      display: flex;
+      background: #f2f2f2;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    .search input {
+      flex: 1;
+      border: 0;
+      outline: none;
+      background: transparent;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+
+    .search button {
+      border: 0;
+      background: #171717;
+      color: white;
+      padding: 0 22px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    nav {
+      border-top: 1px solid #eee;
+      background: white;
+    }
+
+    .nav-inner {
+      max-width: 1250px;
+      margin: auto;
+      padding: 13px 25px;
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-inner a:hover {
+      color: #a67c52;
+    }
+
+    .hero {
+      min-height: 500px;
+      background:
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 1250px;
+      width: 100%;
+      margin: auto;
+      padding: 60px 25px;
+      color: white;
+    }
+
+    .hero-content small {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 13px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(45px, 7vw, 82px);
+      line-height: .95;
+      max-width: 700px;
+      margin: 20px 0;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      max-width: 500px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      background: white;
+      color: #171717;
+      padding: 15px 28px;
+      font-weight: 700;
+      border-radius: 3px;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .benefits {
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    .benefits-inner {
+      max-width: 1250px;
+      margin: auto;
+      padding: 25px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .benefit {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .benefit strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .benefit span {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .section {
+      max-width: 1250px;
+      margin: auto;
+      padding: 70px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title small {
+      color: #a67c52;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-top: 10px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category {
+      height: 330px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: #ddd;
+    }
+
+    .category img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .4s;
+    }
+
+    .category:hover img {
+      transform: scale(1.05);
+    }
+
+    .category-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 40%, rgba(0,0,0,.75));
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
+    }
+
+    .category h3 {
+      font-size: 25px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #eee;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 350px;
+      overflow: hidden;
+      background: #eee;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .4s;
+    }
+
+    .product:hover img {
+      transform: scale(1.04);
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-category {
+      color: #999;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product h3 {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .old-price {
+      color: #999;
+      text-decoration: line-through;
+      font-size: 13px;
+      margin-left: 7px;
+    }
+
+    .buy-btn {
+      width: 100%;
+      border: 0;
+      background: #171717;
+      color: white;
+      padding: 13px;
+      margin-top: 15px;
+      font-weight: 700;
+    }
+
+    .buy-btn:hover {
+      background: #a67c52;
+    }
+
+    .promo {
+      background: #e9e2da;
+      padding: 65px 25px;
+      text-align: center;
+    }
+
+    .promo h2 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .promo p {
+      max-width: 600px;
+      margin: auto auto 25px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .promo .btn {
+      background: #171717;
+      color: white;
+    }
+
+    .shipping {
+      background: white;
+    }
+
+    .shipping-box {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .shipping-box h2 {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .shipping-box p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .shipping-highlight {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f5f1ec;
+      font-weight: 700;
+    }
+
+    .about {
+      background: #f8f7f5;
+      text-align: center;
+    }
+
+    .about-box {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .about-box h2 {
+      font-size: 35px;
+      margin-bottom: 18px;
+    }
+
+    .about-box p {
+      color: #666;
+      line-height: 1.8;
+    }
+
+    footer {
+      background: #171717;
+      color: white;
+      padding: 55px 25px 25px;
+    }
+
+    .footer-inner {
+      max-width: 1250px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand h2 {
+      margin-bottom: 15px;
+    }
+
+    .footer-brand p,
+    footer li {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    .copyright {
+      max-width: 1250px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.25);
+      z-index: 2000;
+    }
+
+    @media (max-width: 900px) {
+      .header-main {
+        flex-wrap: wrap;
+      }
+
+      .search {
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .benefits-inner,
+      .categories,
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-main {
+        padding: 15px;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      .header-actions {
+        font-size: 12px;
+      }
+
+      .nav-inner {
+        overflow-x: auto;
+        gap: 20px;
+      }
+
+      .hero {
+        min-height: 440px;
+      }
+
+      .benefits-inner,
+      .categories,
+      .products,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 420px;
+      }
+
+      .category {
+        height: 380px;
+      }
+
+      .section-title h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="topbar">
-  <span>🇳🇮 Envíos a toda Nicaragua</span>
-  <span>Compra fácil y atención personalizada por WhatsApp</span>
-</div>
-
-<header>
-
-  <div class="logo">
-    TIENDA<span>NICARAGUA</span>
+  <div class="topbar">
+    🇳🇮 Envíos a toda Nicaragua · Compra fácil y atención personalizada por WhatsApp
   </div>
 
-  <div class="search">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Buscar ropa, zapatos y más..."
-      onkeyup="searchProducts()"
-    >
-    <button>⌕</button>
-  </div>
+  <header>
 
-  <div class="header-actions">
+    <div class="header-main">
 
-    <div class="header-action">
-      <small>Bienvenido</small>
-      <strong>Mi cuenta</strong>
-    </div>
-
-    <div class="header-action">
-      <small>Tu pedido</small>
-      <strong>Seguimiento</strong>
-    </div>
-
-    <div class="cart" onclick="toggleCart()">
-      🛒
-      <div class="cart-count" id="cartCount">0</div>
-    </div>
-
-  </div>
-
-</header>
-
-<nav>
-  <a href="#inicio">Inicio</a>
-  <a href="#categorias">Categorías</a>
-  <a href="#productos">Ropa</a>
-  <a href="#productos">Zapatos</a>
-  <a href="#ofertas">Ofertas</a>
-  <a href="#envios">Envíos</a>
-</nav>
-
-<section class="hero" id="inicio">
-
-  <div class="hero-box">
-
-    <div class="hero-content">
-
-      <small>Nueva colección</small>
-
-      <h1>Estilo que habla por ti.</h1>
-
-      <p>
-        Descubre ropa y calzado cuidadosamente seleccionados
-        para acompañarte en cada ocasión.
-      </p>
-
-      <a href="#productos" class="hero-button">
-        Comprar ahora
+      <a href="#" class="logo">
+        GarChéz <span>Boutique</span>
       </a>
 
-    </div>
-
-  </div>
-
-</section>
-
-<section class="benefits">
-
-  <div class="benefit">
-    <strong>🚚 Envíos nacionales</strong>
-    <p>Enviamos tus pedidos mediante CargoTrans.</p>
-  </div>
-
-  <div class="benefit">
-    <strong>🇳🇮 Compra desde Nicaragua</strong>
-    <p>Servicio pensado exclusivamente para clientes en Nicaragua.</p>
-  </div>
-
-  <div class="benefit">
-    <strong>💬 Atención personalizada</strong>
-    <p>Resolvemos tus dudas directamente por WhatsApp.</p>
-  </div>
-
-  <div class="benefit">
-    <strong>✨ Compra sencilla</strong>
-    <p>Elige tus productos y realiza tu pedido fácilmente.</p>
-  </div>
-
-</section>
-
-<section class="container" id="categorias">
-
-  <div class="section-title">
-    <div>
-      <h2>Compra por categoría</h2>
-      <p>Encuentra lo que buscas fácilmente.</p>
-    </div>
-  </div>
-
-  <div class="categories">
-
-    <div class="category" onclick="filterCategory('Ropa')">
-      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80">
-      <div class="category-overlay">
-        <h3>Ropa</h3>
-      </div>
-    </div>
-
-    <div class="category" onclick="filterCategory('Mujer')">
-      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80">
-      <div class="category-overlay">
-        <h3>Mujer</h3>
-      </div>
-    </div>
-
-    <div class="category" onclick="filterCategory('Hombre')">
-      <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=700&q=80">
-      <div class="category-overlay">
-        <h3>Hombre</h3>
-      </div>
-    </div>
-
-    <div class="category" onclick="filterCategory('Zapatos')">
-      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80">
-      <div class="category-overlay">
-        <h3>Zapatos</h3>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="container" id="productos">
-
-  <div class="section-title">
-
-    <div>
-      <h2>Productos destacados</h2>
-      <p>Una selección de nuestros productos.</p>
-    </div>
-
-  </div>
-
-  <div class="filters">
-
-    <button class="filter active" onclick="filterCategory('Todos')">
-      Todos
-    </button>
-
-    <button class="filter" onclick="filterCategory('Ropa')">
-      Ropa
-    </button>
-
-    <button class="filter" onclick="filterCategory('Mujer')">
-      Mujer
-    </button>
-
-    <button class="filter" onclick="filterCategory('Hombre')">
-      Hombre
-    </button>
-
-    <button class="filter" onclick="filterCategory('Zapatos')">
-      Zapatos
-    </button>
-
-  </div>
-
-  <div class="products" id="productGrid">
-
-    <div class="product" data-category="Mujer Ropa">
-
-      <div class="product-image">
-
-        <span class="badge">NUEVO</span>
-
-        <button class="heart">♡</button>
-
-        <img
-          src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=80"
-          alt="Vestido"
+      <div class="search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="¿Qué estás buscando?"
+          onkeyup="searchProducts()"
         >
-
+        <button onclick="searchProducts()">🔍</button>
       </div>
 
-      <div class="product-info">
-
-        <div class="product-category">Mujer · Ropa</div>
-
-        <h3>Vestido elegante</h3>
-
-        <div class="rating">
-          <span>★★★★★</span> 4.9
-        </div>
-
-        <div class="price">
-          C$ 850
-        </div>
-
-        <div class="product-buttons">
-
-          <button class="add" onclick="addCart('Vestido elegante',850)">
-            Agregar
-          </button>
-
-          <button
-            class="whatsapp"
-            onclick="buyWhatsApp('Vestido elegante',850)">
-            ☎
-          </button>
-
-        </div>
-
+      <div class="header-actions">
+        <span>♡ Favoritos</span>
+        <span>🛍 Carrito</span>
       </div>
 
     </div>
 
+    <nav>
+      <div class="nav-inner">
+        <a href="#inicio">Inicio</a>
+        <a href="#categorias">Categorías</a>
+        <a href="#ropa">Ropa</a>
+        <a href="#zapatos">Zapatos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#envios">Envíos</a>
+      </div>
+    </nav>
 
-    <div class="product" data-category="Mujer Ropa">
+  </header>
 
-      <div class="product-image">
+  <main>
 
-        <span class="badge">DESTACADO</span>
+    <section class="hero" id="inicio">
 
-        <button class="heart">♡</button>
+      <div class="hero-content">
 
-        <img
-          src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=80"
-          alt="Blusa"
-        >
+        <small>GarChéz Boutique · Nicaragua</small>
+
+        <h1>
+          Estilo que habla por ti.
+        </h1>
+
+        <p>
+          Descubre prendas y zapatos seleccionados para quienes quieren
+          vestir con personalidad, elegancia y confianza.
+        </p>
+
+        <a href="#productos" class="btn">
+          Comprar ahora
+        </a>
 
       </div>
 
-      <div class="product-info">
+    </section>
 
-        <div class="product-category">Mujer · Ropa</div>
 
-        <h3>Blusa moderna</h3>
+    <section class="benefits">
 
-        <div class="rating">
-          <span>★★★★★</span> 4.8
+      <div class="benefits-inner">
+
+        <div class="benefit">
+          <strong>🇳🇮 Envíos nacionales</strong>
+          <span>Enviamos a diferentes zonas de Nicaragua.</span>
         </div>
 
-        <div class="price">
-          C$ 550
+        <div class="benefit">
+          <strong>📦 CargoTrans</strong>
+          <span>Envíos seguros mediante CargoTrans.</span>
         </div>
 
-        <div class="product-buttons">
-
-          <button class="add" onclick="addCart('Blusa moderna',550)">
-            Agregar
-          </button>
-
-          <button
-            class="whatsapp"
-            onclick="buyWhatsApp('Blusa moderna',550)">
-            ☎
-          </button>
-
+        <div class="benefit">
+          <strong>💬 Compra por WhatsApp</strong>
+          <span>Atención personalizada para realizar tu pedido.</span>
         </div>
 
-      </div>
-
-    </div>
-
-
-    <div class="product" data-category="Hombre Ropa">
-
-      <div class="product-image">
-
-        <span class="badge">NUEVO</span>
-
-        <button class="heart">♡</button>
-
-        <img
-          src="https://images.unsplash.com/photo-1529375137366-7f8f2e6d6c4d?auto=format&fit=crop&w=700&q=80"
-          alt="Camisa"
-        >
-
-      </div>
-
-      <div class="product-info">
-
-        <div class="product-category">Hombre · Ropa</div>
-
-        <h3>Camisa casual</h3>
-
-        <div class="rating">
-          <span>★★★★★</span> 4.9
-        </div>
-
-        <div class="price">
-          C$ 650
-        </div>
-
-        <div class="product-buttons">
-
-          <button class="add" onclick="addCart('Camisa casual',650)">
-            Agregar
-          </button>
-
-          <button
-            class="whatsapp"
-            onclick="buyWhatsApp('Camisa casual',650)">
-            ☎
-          </button>
-
+        <div class="benefit">
+          <strong>✨ Selección especial</strong>
+          <span>Moda pensada para ti.</span>
         </div>
 
       </div>
 
-    </div>
+    </section>
 
 
-    <div class="product" data-category="Zapatos">
+    <section class="section" id="categorias">
 
-      <div class="product-image">
+      <div class="section-title">
+        <small>Explora</small>
+        <h2>Compra por categoría</h2>
+      </div>
 
-        <span class="badge">OFERTA</span>
+      <div class="categories">
 
-        <button class="heart">♡</button>
+        <a href="#productos" class="category">
+          <img
+            src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80"
+            alt="Ropa"
+          >
 
-        <img
-          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
-          alt="Zapatos"
-        >
+          <div class="category-overlay">
+            <h3>Ropa</h3>
+          </div>
+        </a>
+
+
+        <a href="#productos" class="category">
+
+          <img
+            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
+            alt="Moda femenina"
+          >
+
+          <div class="category-overlay">
+            <h3>Mujer</h3>
+          </div>
+
+        </a>
+
+
+        <a href="#productos" class="category">
+
+          <img
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
+            alt="Moda"
+          >
+
+          <div class="category-overlay">
+            <h3>Estilo</h3>
+          </div>
+
+        </a>
+
+
+        <a href="#productos" class="category">
+
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+            alt="Zapatos"
+          >
+
+          <div class="category-overlay">
+            <h3>Zapatos</h3>
+          </div>
+
+        </a>
 
       </div>
 
-      <div class="product-info">
+    </section>
 
-        <div class="product-category">Calzado</div>
 
-        <h3>Calzado urbano</h3>
+    <section class="section" id="productos">
 
-        <div class="rating">
-          <span>★★★★★</span> 4.9
-        </div>
+      <div class="section-title">
+        <small>Nueva colección</small>
+        <h2>Productos destacados</h2>
+      </div>
 
-        <div class="price">
-          C$ 1,250
-          <span class="old-price">C$ 1,450</span>
-        </div>
+      <div class="products">
 
-        <div class="product-buttons">
 
-          <button class="add" onclick="addCart('Calzado urbano',1250)">
-            Agregar
-          </button>
+        <article class="product" data-name="Vestido elegante">
 
-          <button
-            class="whatsapp"
-            onclick="buyWhatsApp('Calzado urbano',1250)">
-            ☎
-          </button>
+          <div class="product-image">
 
-        </div>
+            <img
+              src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80"
+              alt="Vestido elegante"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-category">Ropa</span>
+
+            <h3>Vestido elegante</h3>
+
+            <span class="price">C$850</span>
+
+            <button
+              class="buy-btn"
+              onclick="buyProduct('Vestido elegante','C$850')"
+            >
+              Comprar por WhatsApp
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="product" data-name="Blusa moderna">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80"
+              alt="Blusa moderna"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-category">Ropa</span>
+
+            <h3>Blusa moderna</h3>
+
+            <span class="price">C$550</span>
+
+            <button
+              class="buy-btn"
+              onclick="buyProduct('Blusa moderna','C$550')"
+            >
+              Comprar por WhatsApp
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="product" data-name="Camisa casual">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=900&q=80"
+              alt="Camisa casual"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-category">Ropa</span>
+
+            <h3>Camisa casual</h3>
+
+            <span class="price">C$650</span>
+
+            <button
+              class="buy-btn"
+              onclick="buyProduct('Camisa casual','C$650')"
+            >
+              Comprar por WhatsApp
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="product" data-name="Calzado urbano">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+              alt="Calzado urbano"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-category">Zapatos</span>
+
+            <h3>Calzado urbano</h3>
+
+            <span class="price">C$1,250</span>
+
+            <span class="old-price">C$1,450</span>
+
+            <button
+              class="buy-btn"
+              onclick="buyProduct('Calzado urbano','C$1,250')"
+            >
+              Comprar por WhatsApp
+            </button>
+
+          </div>
+
+        </article>
 
       </div>
 
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
-<section class="container" id="ofertas">
+    <section class="promo" id="ofertas">
 
-  <div class="promo">
-
-    <div>
-      <h2>Ofertas seleccionadas</h2>
-      <p>Descubre productos especiales a precios atractivos.</p>
-    </div>
-
-    <a href="#productos" class="promo-button">
-      Ver ofertas
-    </a>
-
-  </div>
-
-</section>
-
-
-<section class="container" id="envios">
-
-  <div class="shipping">
-
-    <div>
-
-      <h2>🚚 Envíos a toda Nicaragua</h2>
+      <h2>Tu próximo look empieza aquí.</h2>
 
       <p>
-        Realizamos nuestros envíos mediante CargoTrans,
-        facilitando la entrega de tus compras en diferentes
-        departamentos y municipios del país.
+        Encuentra piezas especiales y descubre nuevas formas de expresar
+        tu estilo. Compra directamente con GarChéz Boutique.
       </p>
 
-    </div>
+      <a href="#productos" class="btn">
+        Ver productos
+      </a>
 
-    <div>
-
-      <h2>📍 Chinandega y El Viejo</h2>
-
-      <p>
-        Contamos con <strong>envío gratuito en el centro</strong>
-        de Chinandega y El Viejo.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
-<footer>
+    <section class="section shipping" id="envios">
 
-  <div class="footer-grid">
+      <div class="shipping-box">
 
-    <div>
-      <h3>TIENDANICARAGUA</h3>
-      <p>
-        Ropa y calzado seleccionados para quienes
-        valoran el estilo, la calidad y los detalles.
-      </p>
-    </div>
+        <h2>Envíos en Nicaragua</h2>
 
-    <div>
-      <h3>Comprar</h3>
-      <a href="#productos">Ropa</a><br>
-      <a href="#productos">Zapatos</a><br>
-      <a href="#ofertas">Ofertas</a>
-    </div>
+        <p>
+          Realizamos nuestros envíos mediante CargoTrans.
+          Escríbenos por WhatsApp para consultar disponibilidad,
+          costo y tiempo estimado de entrega según tu ubicación.
+        </p>
 
-    <div>
-      <h3>Información</h3>
-      <a href="#envios">Envíos</a><br>
-      <a href="#">Cambios y devoluciones</a><br>
-      <a href="#">Preguntas frecuentes</a>
-    </div>
-
-    <div>
-      <h3>Atención</h3>
-      <p>Pedidos y consultas por WhatsApp.</p>
-      <p>Nicaragua 🇳🇮</p>
-    </div>
-
-  </div>
-
-  <div class="copyright">
-    © 2026 TIENDANICARAGUA · Todos los derechos reservados.
-  </div>
-
-</footer>
-
-
-<!-- CARRITO -->
-
-<div class="cart-panel" id="cartPanel">
-
-  <div class="cart-panel-header">
-
-    <h2>Tu carrito</h2>
-
-    <button class="close" onclick="toggleCart()">×</button>
-
-  </div>
-
-  <div class="cart-items" id="cartItems">
-    <p>Tu carrito está vacío.</p>
-  </div>
-
-  <button class="checkout" onclick="checkoutWhatsApp()">
-    Finalizar pedido por WhatsApp
-  </button>
-
-</div>
-
-
-<script>
-
-let cart=[];
-
-
-/* CARRITO */
-
-function addCart(name,price){
-
-  cart.push({
-    name:name,
-    price:price
-  });
-
-  document.getElementById("cartCount").innerText=cart.length;
-
-  renderCart();
-
-  alert("Producto agregado al carrito.");
-
-}
-
-
-function renderCart(){
-
-  const container=document.getElementById("cartItems");
-
-  if(cart.length===0){
-
-    container.innerHTML="<p>Tu carrito está vacío.</p>";
-
-    return;
-
-  }
-
-  let html="";
-  let total=0;
-
-  cart.forEach((item,index)=>{
-
-    total+=item.price;
-
-    html+=`
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong>
-          <br>
-          C$ ${item.price.toLocaleString()}
+        <div class="shipping-highlight">
+          🚚 Envío GRATIS en el centro de Chinandega y El Viejo
         </div>
 
-        <button onclick="removeCart(${index})">
-          ✕
-        </button>
       </div>
-    `;
 
-  });
-
-  html+=`
-    <br>
-    <strong>Total: C$ ${total.toLocaleString()}</strong>
-  `;
-
-  container.innerHTML=html;
-
-}
+    </section>
 
 
-function removeCart(index){
+    <section class="section about">
 
-  cart.splice(index,1);
+      <div class="about-box">
 
-  document.getElementById("cartCount").innerText=cart.length;
+        <h2>Sobre GarChéz Boutique</h2>
 
-  renderCart();
+        <p>
+          GarChéz Boutique nace con la idea de ofrecer moda,
+          estilo y una experiencia de compra cercana y personalizada
+          para nuestros clientes en Nicaragua.
+        </p>
 
-}
+        <br>
 
+        <p>
+          <strong>Propietarios:</strong>
+          Kevin Garcia y Keyling Sanchez
+        </p>
 
-function toggleCart(){
+      </div>
 
-  document
-    .getElementById("cartPanel")
-    .classList
-    .toggle("open");
+    </section>
 
-}
-
-
-/* WHATSAPP */
-
-function buyWhatsApp(product,price){
-
-  const phone="50500000000";
-
-  const message=
-    "Hola, quiero comprar: "+
-    product+
-    ". Precio: C$ "+
-    price+
-    ". ¿Podrían ayudarme con el pedido?";
-
-  window.open(
-    "https://wa.me/"+phone+
-    "?text="+encodeURIComponent(message),
-    "_blank"
-  );
-
-}
+  </main>
 
 
-function checkoutWhatsApp(){
+  <footer>
 
-  if(cart.length===0){
+    <div class="footer-inner">
 
-    alert("Tu carrito está vacío.");
+      <div class="footer-brand">
 
-    return;
+        <h2>GarChéz Boutique</h2>
 
-  }
+        <p>
+          Moda, estilo y personalidad.
+          Compra en línea y recibe tus productos en Nicaragua.
+        </p>
 
-  const phone="50584950733";
-
-  let message="Hola, quiero realizar este pedido:%0A%0A";
-
-  cart.forEach(item=>{
-
-    message+=
-      "• "+
-      item.name+
-      " - C$ "+
-      item.price+
-      "%0A";
-
-  });
-
-  window.open(
-    "https://wa.me/"+phone+
-    "?text="+message,
-    "_blank"
-  );
-
-}
+      </div>
 
 
-/* BUSCADOR */
+      <div>
 
-function searchProducts(){
+        <h3>Comprar</h3>
 
-  const search=
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase();
+        <ul>
+          <li>Ropa</li>
+          <li>Zapatos</li>
+          <li>Nueva colección</li>
+          <li>Ofertas</li>
+        </ul>
 
-  const products=
-    document.querySelectorAll(".product");
-
-  products.forEach(product=>{
-
-    const text=
-      product.innerText.toLowerCase();
-
-    product.style.display=
-      text.includes(search)
-      ? "block"
-      : "none";
-
-  });
-
-}
+      </div>
 
 
-/* FILTROS */
+      <div>
 
-function filterCategory(category){
+        <h3>Ayuda</h3>
 
-  const products=
-    document.querySelectorAll(".product");
+        <ul>
+          <li>Cómo comprar</li>
+          <li>Envíos</li>
+          <li>Preguntas frecuentes</li>
+          <li>WhatsApp</li>
+        </ul>
 
-  products.forEach(product=>{
+      </div>
 
-    if(category==="Todos"){
 
-      product.style.display="block";
+      <div>
 
-    }else{
+        <h3>GarChéz Boutique</h3>
 
-      const categories=
-        product.dataset.category;
+        <ul>
+          <li>Nicaragua 🇳🇮</li>
+          <li>Chinandega</li>
+          <li>El Viejo</li>
+          <li>Kevin Garcia & Keyling Sanchez</li>
+        </ul>
 
-      product.style.display=
-        categories.includes(category)
-        ? "block"
-        : "none";
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © 2026 GarChéz Boutique · Todos los derechos reservados.
+    </div>
+
+  </footer>
+
+
+  <!-- BOTÓN WHATSAPP -->
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/50587961399"
+    target="_blank"
+    title="Escríbenos por WhatsApp"
+  >
+    ☎
+  </a>
+
+
+  <script>
+
+    const phone = "50587961399";
+
+
+    function buyProduct(productName, price) {
+
+      const message =
+        "Hola, GarChéz Boutique. Estoy interesada en comprar: "
+        + productName
+        + " - "
+        + price
+        + ". ¿Me pueden dar más información?";
+
+      const url =
+        "https://wa.me/"
+        + phone
+        + "?text="
+        + encodeURIComponent(message);
+
+      window.open(url, "_blank");
 
     }
 
-  });
 
-  document
-    .getElementById("productos")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
+    function searchProducts() {
 
-}
+      const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
 
-</script>
+      const products =
+        document.querySelectorAll(".product");
+
+
+      products.forEach(product => {
+
+        const name =
+          product
+          .getAttribute("data-name")
+          .toLowerCase();
+
+        if (name.includes(search)) {
+
+          product.style.display = "";
+
+        } else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+    }
+
+  </script>
 
 </body>
 </html>
